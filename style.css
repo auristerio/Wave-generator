@@ -1,0 +1,278 @@
+/* =====================================================================
+   Acoustic Wave Builder — stylesheet
+   A plain white-and-blue theme. Kept intentionally simple.
+   ===================================================================== */
+
+:root {
+  --bg: #eef4fa;
+  --panel-bg: #ffffff;
+  --border: #cddce9;
+  --border-soft: #e3ecf4;
+  --accent: #2f6fb0;
+  --accent-dark: #1f527d;
+  --text: #1c2b3a;
+  --text-muted: #5b7186;
+  --danger: #b3452f;
+  --radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.45;
+}
+
+/* ---------- header / footer ---------- */
+
+.site-header {
+  padding: 28px 20px 18px;
+  text-align: center;
+}
+
+.site-header h1 {
+  margin: 0 0 6px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* ---------- layout ---------- */
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+
+.panel h2 {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.hint {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0 0 14px;
+}
+
+/* ---------- form fields ---------- */
+
+.field-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 160px;
+}
+
+label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+input[type="number"],
+input[type="text"],
+select {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fbfdff;
+  color: var(--text);
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+  width: 100%;
+}
+
+input:focus,
+select:focus,
+button:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ---------- buttons ---------- */
+
+button {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.primary-btn {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+.primary-btn:hover:not(:disabled) {
+  background: var(--accent-dark);
+}
+
+.secondary-btn {
+  background: #ffffff;
+  color: var(--accent-dark);
+  border-color: var(--border);
+}
+
+.secondary-btn:hover:not(:disabled) {
+  background: var(--border-soft);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- signal cards ---------- */
+
+#signal-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.signal-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  background: #fbfdff;
+}
+
+.signal-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 10px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.toggle input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.signal-card-header select {
+  min-width: 110px;
+}
+
+.signal-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.control label {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.paired-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.paired-input input[type="range"] {
+  flex: 1;
+}
+
+.paired-input input[type="number"] {
+  width: 72px;
+  flex-shrink: 0;
+}
+
+/* ---------- plots ---------- */
+
+.plots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.plot-block h3 {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #ffffff;
+  display: block;
+}
+
+.download-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* ---------- responsive tweaks ---------- */
+
+@media (max-width: 480px) {
+  .site-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .panel {
+    padding: 16px;
+  }
+}

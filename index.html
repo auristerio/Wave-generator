@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acoustic Wave Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1>Acoustic Wave Builder</h1>
+    <p class="subtitle">Mix up to five signals, then inspect the result in time and frequency.</p>
+  </header>
+
+  <main>
+
+    <!-- ===================== GLOBAL WAVE SETTINGS ===================== -->
+    <section class="panel" id="global-settings">
+      <h2>Wave settings</h2>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="duration">Duration (s)</label>
+          <input type="number" id="duration" min="0.05" max="5" step="0.05" value="1">
+        </div>
+        <div class="field">
+          <label for="sampleRate">Sample rate (Hz)</label>
+          <select id="sampleRate">
+            <option value="8000">8000</option>
+            <option value="16000">16000</option>
+            <option value="22050">22050</option>
+            <option value="44100" selected>44100</option>
+            <option value="48000">48000</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="timeWindow">Time plot window (s)</label>
+          <input type="number" id="timeWindow" min="0.001" step="0.005" value="0.05">
+        </div>
+        <div class="field">
+          <label for="maxFreq">Spectrum max frequency (Hz)</label>
+          <input type="number" id="maxFreq" min="50" step="50" value="2000">
+        </div>
+      </div>
+
+      <button id="generateBtn" class="primary-btn">Generate wave &amp; plots</button>
+    </section>
+
+    <!-- ===================== SIGNAL CARDS (built by script.js) ===================== -->
+    <section class="panel" id="signals-panel">
+      <h2>Signals</h2>
+      <p class="hint">Switch a signal on to include it in the mix. Once you've generated a wave, any change updates the plots automatically.</p>
+      <div id="signal-list"><!-- 5 signal cards are injected here by script.js --></div>
+    </section>
+
+    <!-- ===================== PLOTS ===================== -->
+    <section class="panel" id="plots-panel">
+      <h2>Plots</h2>
+      <div class="plots-grid">
+
+        <div class="plot-block">
+          <h3>Time domain</h3>
+          <canvas id="timeCanvas" width="600" height="320"></canvas>
+          <div class="download-row">
+            <button data-canvas="timeCanvas" data-format="png" class="download-btn">Download PNG</button>
+            <button data-canvas="timeCanvas" data-format="jpeg" class="download-btn">Download JPG</button>
+          </div>
+        </div>
+
+        <div class="plot-block">
+          <h3>Frequency spectrum (FFT)</h3>
+          <canvas id="freqCanvas" width="600" height="320"></canvas>
+          <div class="download-row">
+            <button data-canvas="freqCanvas" data-format="png" class="download-btn">Download PNG</button>
+            <button data-canvas="freqCanvas" data-format="jpeg" class="download-btn">Download JPG</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== LISTEN & EXPORT ===================== -->
+    <section class="panel" id="audio-panel">
+      <h2>Listen &amp; export</h2>
+      <div class="field-row">
+        <button id="playBtn" class="secondary-btn" disabled>Play</button>
+        <button id="stopBtn" class="secondary-btn" disabled>Stop</button>
+        <button id="downloadWavBtn" class="primary-btn" disabled>Download .wav</button>
+      </div>
+      <p class="hint" id="statusMsg">Set up your signals and click "Generate wave &amp; plots" to begin.</p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>This website was developed with AI-assisted programming using Claude Code by Anthropic</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
